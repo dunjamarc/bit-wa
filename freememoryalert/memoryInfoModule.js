@@ -1,0 +1,43 @@
+const os = require('os');
+const figlet = require ('figlet');
+
+let callbackArray = [];
+
+const getText = (text) => {
+    return figlet.textSync( text, {
+        font: 'Ghost',
+        horizontalLayout: 'default',
+        verticalLayout: 'default'
+    });
+}
+
+function checkMemory() {
+    const freeMemory = os.freemem();
+    const lowMem = 1150000000;
+    if (freeMemory < lowMem) {
+        for(let i = 0; i < callbackArray.length; i++) {
+            const message = getText('Low');
+            callbackArray[i](message);
+        }
+    } else {
+        for(let i = 0; i < callbackArray.length; i++) {
+            const message = getText('OK');
+            callbackArray[i](message);
+        }
+    }
+}
+
+var interval = setInterval(checkMemory, 1000);
+//checkMemory();
+
+function clearInt() {
+    clearInterval(interval);
+}
+
+setTimeout(clearInt, 5000);
+
+const getAlert = (callback) => {
+    callbackArray.push(callback);
+} 
+
+module.exports = {getAlert, checkMemory};
