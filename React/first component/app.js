@@ -1,7 +1,8 @@
 
-
-const ShoppingList = (props) => {
+// functional component
+const NumberList = (props) => {  // object properties
     return (
+        // JSX = React.createElement
         <ul>
             {props.names.map(item => <li>{item}</li>)}
         </ul>
@@ -10,9 +11,9 @@ const ShoppingList = (props) => {
 
 const App = (props) => {
     return (
-        <div>
+        <div>  
             <h1>{props.title}</h1>
-            <ShoppingList names={props.numbers}/>
+            <NumberList names={props.numbers}/>  
         </div>
     )
 }
