@@ -1,0 +1,38 @@
+* {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  background-color: #EE6E73;
+}
+
+h1 {
+  margin: 0;
+  font-size: 35px;
+  padding: 15px;
+}
+
+#root div div {
+  background-color: #546E7A;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+div:hover {
+  box-shadow: 0 10px 25px rgb(177, 169, 169);
+  transition: box-shadow .3s;
+}
+
+h2 {
+  margin: 0;
+  font-size: 25px;
+  padding-bottom: 15px;
+}
+
+main#root {
+  margin: 8px auto 10px auto;
+  width: 960px;
+}

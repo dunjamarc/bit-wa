@@ -11,20 +11,28 @@ const getText = (text) => {
     });
 }
 
+const text = (str) => {
+    for(let i = 0; i < callbackArray.length; i++) {
+        const message = getText(str);
+        callbackArray[i](message);
+    }
+}
+
 function checkMemory() {
     const freeMemory = os.freemem();
     const lowMem = 1150000000;
-    if (freeMemory < lowMem) {
-        for(let i = 0; i < callbackArray.length; i++) {
-            const message = getText('Low');
-            callbackArray[i](message);
-        }
-    } else {
-        for(let i = 0; i < callbackArray.length; i++) {
-            const message = getText('OK');
-            callbackArray[i](message);
-        }
-    }
+    freeMemory < lowMem ? text('Low') : text('OK');
+    // if (freeMemory < lowMem) {
+    //     for(let i = 0; i < callbackArray.length; i++) {
+    //         const message = getText('Low');
+    //         callbackArray[i](message);
+    //     }
+    // } else {
+    //     for(let i = 0; i < callbackArray.length; i++) {
+    //         const message = getText('OK');
+    //         callbackArray[i](message);
+    //     }
+    // }
 }
 
 var interval = setInterval(checkMemory, 1000);
