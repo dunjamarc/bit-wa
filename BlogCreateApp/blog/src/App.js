@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Blog from './Blog.js';
+import PropTypes from "prop-types";
 
 
 const App = (props) => {
+
   return (
       <div>   
          { props.value.map(el => <Blog value={el} key={el.id}/>) }
 
       </div>
   )
+}
+
+App.propTypes = {
+  value: PropTypes.array.isRequired
 }
 
 
