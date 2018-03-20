@@ -11,7 +11,7 @@ const Card = (props) => {
         
             </div>
             <div className="card-content">
-                <p>{props.value.email}</p>
+                <p>{props.value.mailHidden()}</p>
                 <p>Birth date: {new Date(props.value.dob).getDate() +'.'+ (new Date(props.value.dob).getMonth() + 1) +'.'+ new Date(props.value.dob).getFullYear()}</p>
             </div>
         </div>
