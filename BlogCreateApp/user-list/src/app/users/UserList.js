@@ -6,7 +6,8 @@ class List extends Component {
     render() {
         return (
             <ul className='collection'>
-                <li className='collection-item avatar'>
+                <li 
+                className={[ 'collection-item avatar', ((this.props.value.gender == 'female') ? 'female' : 'male')].join(' ')}>
                     <img src={this.props.value.photo} alt='img' className='circle'/>
                     <p>name: {this.props.value.firstName}</p>
                     <p><i className="material-icons">email</i>Email: {this.props.value.mailHidden()}</p>

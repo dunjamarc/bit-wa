@@ -4,7 +4,7 @@ import React from 'react';
 const Card = (props) => {
     return (
 
-        <div className="card col s6 m4">
+        <div className={["card col s6 m4", ((props.value.gender == 'female') ? 'female' : 'male')].join(' ')}>
             <div className="card-image">
                 <img src={props.value.photo} alt=''/>
                 <span className='card-title'>{props.value.firstName}</span>
