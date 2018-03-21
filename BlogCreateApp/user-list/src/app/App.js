@@ -10,7 +10,8 @@ import userList from '../services/UserService.js';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {users: []};
+    this.state = {users: [],
+    showCard:  JSON.parse(localStorage.getItem('showCard')) || false};
   }
 
   componentDidMount(){  // after render / Starting API calls to load in data for your component
@@ -18,16 +19,18 @@ class App extends Component {
       .then(usersData => {
         
         this.setState({
-          users: usersData,
-          showCard: false
+          users: usersData
+          
         })
       })
   }
 
   handleClick = (event) => {
+    localStorage.setItem('showCard', JSON.stringify(!this.state.showCard));
+
     this.setState((prevState) => {
       return { showCard: !prevState.showCard }
-    })
+    });
   }
 
   handleRefresh = (event) => {
@@ -43,16 +46,13 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header handleClick={this.handleClick} handleRefresh={this.handleRefresh}/>
+        <Header handleClick={this.handleClick} handleRefresh={this.handleRefresh} showCard={this.state.showCard}/>
         <div className="row">
             <div className="col s12 m12">
                 {this.state.users.map( (el, i) => {
-                  if(this.state.showCard){
-                    return <Card value={el} key={i}/>
-                  } else {
-                    return <List value={el} key={i}/>
+                return (this.state.showCard ? <Card value={el} key={i}/> : <List value={el} key={i}/>)
                   }
-                })}
+                )}
             </div>
         </div>
         <Footer/>

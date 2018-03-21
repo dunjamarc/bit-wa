@@ -9,8 +9,8 @@ class List extends Component {
                 <li className='collection-item avatar'>
                     <img src={this.props.value.photo} alt='img' className='circle'/>
                     <p>name: {this.props.value.firstName}</p>
-                    <p>Email: {this.props.value.mailHidden()}</p>
-                    <p>date of birth: {this.props.value.dob}</p>
+                    <p><i className="material-icons">email</i>Email: {this.props.value.mailHidden()}</p>
+                    <p><i className="material-icons">cake</i>date of birth: {this.props.value.dob}</p>
                 </li>
             </ul>
         )

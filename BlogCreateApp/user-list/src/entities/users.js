@@ -4,6 +4,7 @@ class User {
         this.firstName = user.name.first;
         this.email = user.email;
         this.dob = user.dob;
+        this.gender = user.gender;
     }
 
     mailHidden(){
