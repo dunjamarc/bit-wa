@@ -53,7 +53,7 @@ class Home extends Component {
       handleChange = (event) => {
         this.setState({
           search: this.state.users.filter( el => {
-            return el.firstName.startsWith(event.target.value);
+              return (el.name.toLowerCase().search(event.target.value.toLowerCase()) != -1);
           }),
           inputValue: event.target.value
         });

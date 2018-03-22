@@ -1,7 +1,9 @@
 class User {
     constructor (user){
         this.photo = user.picture.large;
-        this.firstName = user.name.first;
+        this.first = user.name.first[0].toUpperCase() + user.name.first.slice(1);
+        this.last = user.name.last[0].toUpperCase() + user.name.last.slice(1);
+        this.name = `${this.first} ${this.last}`;
         this.email = user.email;
         this.dob = user.dob;
         this.gender = user.gender;

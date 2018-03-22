@@ -7,7 +7,7 @@ const Card = (props) => {
         <div className={["card col s6 m4", ((props.value.gender == 'female') ? 'female' : 'male')].join(' ')}>
             <div className="card-image">
                 <img src={props.value.photo} alt=''/>
-                <span className='card-title'>{props.value.firstName}</span>
+                <span className='card-title'>{props.value.name}</span>
         
             </div>
             <div className="card-content">

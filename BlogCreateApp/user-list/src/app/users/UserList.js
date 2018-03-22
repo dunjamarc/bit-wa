@@ -9,7 +9,7 @@ class List extends Component {
                 <li 
                 className={[ 'collection-item avatar', ((this.props.value.gender == 'female') ? 'female' : 'male')].join(' ')}>
                     <img src={this.props.value.photo} alt='img' className='circle'/>
-                    <p>name: {this.props.value.firstName}</p>
+                    <p>name: {this.props.value.name}</p>
                     <p><i className="material-icons">email</i>Email: {this.props.value.mailHidden()}</p>
                     <p><i className="material-icons">cake</i>date of birth: {this.props.value.dob}</p>
                 </li>
