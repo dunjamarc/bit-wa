@@ -6,6 +6,7 @@ const Footer = (props) => {
         <footer>
             <div className='container'>
                 <p>&copy;2018 Copyright BIT</p>
+                <p>Last Update: {props.countTime}</p>
             </div>
         </footer>
     )

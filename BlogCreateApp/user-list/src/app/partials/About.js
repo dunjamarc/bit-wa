@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
 const About = (props) => {
@@ -14,6 +14,12 @@ const About = (props) => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, odio. Nostrum laudantium neque quod dolorum, quo alias in atque illo labore enim aliquam quisquam. Magni assumenda dolore magnam cum temporibus porro adipisci, quia necessitatibus numquam accusantium ipsum nam eum nulla itaque alias inventore obcaecati dignissimos, corporis explicabo debitis, architecto delectus?</p>
             <h1>What we do</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, odio. Nostrum laudantium neque quod dolorum, quo alias in atque illo labore enim aliquam quisquam. Magni assumenda dolore magnam cum temporibus porro adipisci, quia necessitatibus numquam accusantium ipsum nam eum nulla itaque alias inventore obcaecati dignissimos, corporis explicabo debitis, architecto delectus?</p>
+            <footer>
+                <div className='container'>
+                    <p>&copy;2018 Copyright BIT</p>
+                    <p>Last Update: </p>
+                </div>
+            </footer>
         </div>
     )
 }
