@@ -19,8 +19,10 @@ class Home extends Component {
 			inputValue: '',
 			search: [],
 			load: true,
-			
+			male: [],
+			female: []
 		};
+
 	}
 
 	setUserDataState = () => {
@@ -31,8 +33,11 @@ class Home extends Component {
 					users: usersData,
 					search: usersData,
 					load: false,
-					refreshTime: new Date()
-				})
+					refreshTime: new Date(),
+
+				});
+
+				this.filterGender(usersData);
 			})
 	}
 
@@ -41,26 +46,36 @@ class Home extends Component {
 			this.setState({
 				passedTime: new Date() - this.state.refreshTime
 			})
-	 }, 3000) 
+		}, 3000)
 	}
 
 	componentDidMount() { // after render / Starting API calls to load in data for your component
 
 		let storageData = JSON.parse(localStorage.getItem('lastVisitUsers'));
 		this.countTime();
-		
+
 		if (storageData) {
+			this.filterGender(storageData);
 			this.setState({
 				users: storageData,
 				search: storageData,
 				load: false,
-				refreshTime: new Date()
+				refreshTime: new Date(),
+
 			})
 		} else {
 			this.setUserDataState();
+			this.filterGender(this.state.users);
 		}
 		
 	}
+
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	if (this.state.bla === nextState.bla) {
+	// 		return true
+	// 	}
+	// 	return false;
+	// }
 
 	handleClick = (event) => {
 		localStorage.setItem('showCard', JSON.stringify(!this.state.showCard));
@@ -73,27 +88,40 @@ class Home extends Component {
 	handleRefresh = (event) => {
 		localStorage.removeItem('lastVisitUsers');
 		this.setUserDataState();
+
 	}
 
 	handleChange = (event) => {
-		this.setState({
-			search: this.state.users.filter(el => {
-				return (el.name.toLowerCase().search(event.target.value.toLowerCase()) != -1);
-			}),
-			inputValue: event.target.value
+		const filtered = this.state.users.filter(el => {
+			return (el.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
 		});
+		this.setState({
+			search: filtered,
+			inputValue: event.target.value
+			
+		});
+		this.filterGender(filtered);
 	}
 
-	
+	filterGender = (arr) => {
+		this.setState({
+			male: arr.filter(el => {
+				return el.gender == 'male';
+			}),
+			female: arr.filter(el => {
+				return el.gender == 'female';
+			})
+		})
+	}
 
 	render() {
-		
 		return (
 			<React.Fragment>
 				<Header handleClick={this.handleClick} handleRefresh={this.handleRefresh} showCard={this.state.showCard} />
 				{this.state.load ? <LoadingScreen /> :
 					<main>
 						<SearchBar handleChange={this.handleChange} inputValue={this.state.inputValue} />
+						<div>male:{this.state.male.length} female:{this.state.female.length}</div>
 						<div className="row">
 							<div className="col s12 m12">
 								{(this.state.search.length === 0) ? <Message /> :
