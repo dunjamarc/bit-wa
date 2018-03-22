@@ -7,6 +7,7 @@ import '../../css/App.css';
 import userList from '../../services/UserService.js';
 import { Switch, Route, Redirect } from "react-router-dom";
 import Header from './Header.js';
+import Message from './Message.js';
 
 class Home extends Component {
     constructor(props){
@@ -59,6 +60,8 @@ class Home extends Component {
         });
       }
 
+
+
     render () { 
         return (
             <React.Fragment>
@@ -68,7 +71,8 @@ class Home extends Component {
             <SearchBar handleChange={this.handleChange} inputValue={this.state.inputValue}/>
             <div className="row">
                 <div className="col s12 m12">
-                    {this.state.search.map( (el, i) => {
+                {(this.state.search.length == 0) ? <Message /> :
+                    this.state.search.map( (el, i) => {
                     return (this.state.showCard ? <Card value={el} key={i}/> : <List value={el} key={i}/>)})}   
                 </div>
             </div>
