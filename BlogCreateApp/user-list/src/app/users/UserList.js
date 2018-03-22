@@ -11,7 +11,7 @@ class List extends Component {
                     <img src={this.props.value.photo} alt='img' className='circle'/>
                     <p>name: {this.props.value.name}</p>
                     <p><i className="material-icons">email</i>Email: {this.props.value.emailHidden}</p>
-                    <p><i className="material-icons">cake</i>date of birth: {this.props.value.dob}</p>
+                    <p><i className="material-icons">cake</i>date of birth: {new Date(this.props.value.dob).getDate() +'.'+ (new Date(this.props.value.dob).getMonth() + 1) +'.'+ new Date(this.props.value.dob).getFullYear()}</p>
                 </li>
             </ul>
         )

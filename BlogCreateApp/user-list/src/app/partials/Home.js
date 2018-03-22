@@ -43,10 +43,17 @@ class Home extends Component {
 
 	countTime = () => {
 		setInterval(() => {
-			this.setState({
-				passedTime: new Date() - this.state.refreshTime
+			let time = Math.floor((new Date() - this.state.refreshTime) / 60000);			
+			this.setState(()=>{
+				if(time === 1){
+					return {passedTime: `${time} minute ago`};
+				} else if(time >= 2){
+					return {passedTime: `${time} minutes ago`};
+				} else if(time > 60){
+					return {passedTime: `Over an hour ago`};
+				}
 			})
-		}, 3000)
+		}, 30000)
 	}
 
 	componentDidMount() { // after render / Starting API calls to load in data for your component
@@ -121,7 +128,7 @@ class Home extends Component {
 				{this.state.load ? <LoadingScreen /> :
 					<main>
 						<SearchBar handleChange={this.handleChange} inputValue={this.state.inputValue} />
-						<div>male:{this.state.male.length} female:{this.state.female.length}</div>
+						<div className="container">male:{this.state.male.length} female:{this.state.female.length}</div>
 						<div className="row">
 							<div className="col s12 m12">
 								{(this.state.search.length === 0) ? <Message /> :

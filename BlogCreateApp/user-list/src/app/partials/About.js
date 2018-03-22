@@ -17,7 +17,6 @@ const About = (props) => {
             <footer>
                 <div className='container'>
                     <p>&copy;2018 Copyright BIT</p>
-                    <p>Last Update: </p>
                 </div>
             </footer>
         </div>
