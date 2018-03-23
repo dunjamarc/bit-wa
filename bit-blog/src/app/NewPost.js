@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const NewPost = (props) => {
     return (
       <div className="container">
-      <h2>NEW POST</h2>
+      <h4>NEW POST</h4>
         <form className="col s12">
           <div className="row">
             <div className="input-field col s12">

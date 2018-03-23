@@ -3,7 +3,7 @@ import React from 'react';
 const CompanyInfo = (props) => {
     return (
         <div className="info-box">
-            <h3>Company</h3>
+            <h4 style={{'text-align':'left'}}>Company</h4>
             <p>name:</p>
             <p>slogan:</p>
         </div>

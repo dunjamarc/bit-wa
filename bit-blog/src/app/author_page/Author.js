@@ -7,7 +7,8 @@ import CompanyInfo from './CompanyInfo.js';
 const Author = (props) => {
     return (
         <div className="container">
-        <Link to='/authors'>back</Link>
+        <p style={{margin:'10px'}}><Link to='/authors'>back</Link></p>
+        <h4>Single Author</h4>
             <NameInfo />
             <AddressInfo />
             <CompanyInfo />

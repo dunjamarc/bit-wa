@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 const ListItemAuthor = (props) => {
     return (
         <li className='list-item'>
-            <h3><Link to='/authors/:name'>title one</Link></h3>
-            <p>Content</p>
+            <h5><Link to='/authors/:name'>Name Surname (2 posts)</Link></h5>
         </li>
     )
 }

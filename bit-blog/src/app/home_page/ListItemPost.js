@@ -6,7 +6,7 @@ const ListItemPost = (props) => {
     return (
         <li className='list-item'>
             <h3><Link to='/posts/:name'>title one</Link></h3>
-            <p>Content</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit...</p>
         </li>
     )
 }

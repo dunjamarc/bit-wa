@@ -6,7 +6,7 @@ const NameInfo = (props) => {
         <div className="info-box">
         <img src="https://itechway.net/wp-content/uploads/2017/09/geek-boys-whatsapp-dp-1.jpg"/>
         <div className='author-info'>
-            <h3>Name Surname</h3>
+            <h4>Name Surname</h4>
             <p>username:</p>
             <p>email:</p>
             <p>phone:</p>
