@@ -36,3 +36,29 @@ img {
 iframe {
   float: right;
 }
+
+.waves-effect {
+  background-color: darkslateblue;
+  margin: 10px;
+}
+
+.waves-effect:hover {
+  background-color: darkgrey;
+}
+
+#input_text {
+  border: 1px solid rgb(133, 131, 131);
+}
+
+#textarea1 {
+  height: 300px;
+  border: 1px solid rgb(133, 131, 131);
+} 
+
+h2 {
+  text-align: center;
+}
+
+form {
+  margin-bottom: 100px;
+}

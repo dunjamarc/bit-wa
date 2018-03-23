@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Switch, Route, Redirect, Link } from "react-router-dom";
-import Home from './Home.js';
+import { Switch, Route, Link } from "react-router-dom";
+import Home from './home_page/Home.js';
 import About from './About.js';
-import AllAuthors from './AllAuthors.js';
+import AllAuthors from './all_authors_page/AllAuthors.js';
 import Author from './author_page/Author.js';
 import Post from './Post.js';
 import Header from './partials/Header.js';
 import Footer from './partials/Footer.js';
+import NewPost from './NewPost.js';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
           <Route exact path='/authors' component={AllAuthors} />
+          <Route exact path='/posts/new' component={NewPost} />
           <Route path='/authors/:name' component={Author} />
           <Route path='/posts/:name' component={Post} />
         </Switch>

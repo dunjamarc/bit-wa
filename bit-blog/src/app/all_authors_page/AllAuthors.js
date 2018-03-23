@@ -1,5 +1,5 @@
 import React from 'react';
-import ListItemAuthor from './author_page/ListItemAuthor.js';
+import ListItemAuthor from './ListItemAuthor.js';
 
 const AllAuthors = (props) => {
     return (
