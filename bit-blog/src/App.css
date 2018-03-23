@@ -1,0 +1,38 @@
+nav {
+  background-color: rgb(149, 167, 216);
+}
+
+nav.nav-mobile li, .brand-logo {
+  color: black !important;
+}
+
+.footer-copyright {
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  background: rgb(149, 167, 216);
+  font-weight: bold;
+}
+
+.list-item {
+  border-bottom: 1px solid black;
+  list-style-type: none;
+}
+
+.info-box {
+  border-bottom: 2px solid grey;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.author-info {
+  display: inline-block;
+}
+
+img {
+  width: 250px;
+}
+
+iframe {
+  float: right;
+}
