@@ -61,9 +61,12 @@ class Post extends React.Component {
                 <h4>{this.state.singlePost.title}</h4>
                 <h4><Link to={`/authors/${this.state.idOfAuthor}`}>{this.state.authorName}</Link></h4>
                 <p className="post-content">{this.state.singlePost.body}</p>
-                <h5>{this.state.sameAuthorPosts.length} more posts from same author</h5>
+                <h5>{this.state.sameAuthorPosts.length - 1} more posts from same author</h5>
                 <ul className="author-posts">
-                    {this.state.sameAuthorPosts.map((el) => <li><Link to={`/posts/${el.id}`}>{el.title}</Link></li>)}
+                    {this.state.sameAuthorPosts.filter((e) => {
+                        if(e.id !== this.state.singlePost.id){
+                            return e;
+                        }}).map((el) => <li><Link to={`/posts/${el.id}`}>{el.title}</Link></li>)}
                 </ul>
             </div>
         )
