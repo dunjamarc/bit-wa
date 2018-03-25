@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import { Switch, Route, Redirect, Link } from "react-router-dom";
 
 const Footer = () => {
     return (

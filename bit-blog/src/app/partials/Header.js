@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (

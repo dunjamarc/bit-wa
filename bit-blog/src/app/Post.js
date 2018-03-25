@@ -1,39 +1,69 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-
+import postList from '../services/postService.js';
+import authorList from '../services/authorService.js';
 
 class Post extends React.Component {
 
     constructor(props) {
         super(props);
-        // this.state = {
-        //     allPosts: []
-        // }
+        this.state = {
+            allPosts: [],
+            allAuthors: [],
+            singlePost: {},
+            authorName: '',
+            sameAuthorPosts: []
+        }
     }
-    // dva fetcha 
 
-    componentDidMount(){
-        // postList.fetchPosts()
-        //     .then((postsData) => {
-        //         this.setState({
-        //             allPosts: postsData
-        //         })
-        //     })
+    componentDidMount() {
+        let thisPostId = this.props.match.params.postId;
 
-        console.log(this.props.match.params.postId);
+        Promise.all([postList.fetchPosts(), authorList.fetchAuthors()])
+            .then((promisesData) => {
+                let posts = promisesData[0];
+                let authors = promisesData[1];
+
+                this.setState({
+                    allPosts: posts
+                })
+                this.setState({
+                    singlePost: this.state.allPosts[thisPostId - 1]
+                })
+                this.setState({
+                    allAuthors: authors,
+                    idOfAuthor: this.state.singlePost.authorId
+                })
+            })
+            .then((promisesData) => {
+                let author = this.state.allAuthors[this.state.idOfAuthor - 1];
+
+                this.setState({
+                    authorName: author.name
+                })
+
+                fetch(`https://jsonplaceholder.typicode.com/posts?userId=${this.state.idOfAuthor}`)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(authorPosts => {
+                        this.setState({
+                            sameAuthorPosts: authorPosts
+                        })
+                    })
+            })
     }
 
     render() {
         return (
+
             <div className="container">
-                <h4>SINGLE POST TITLE 1</h4>
-                <h4><Link to='/authors/:name'>Author Name</Link></h4>
-                <p className="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus obcaecati inventore enim debitis vel, dolore est itaque velit vero quisquam ea quasi amet, eos unde, pariatur perferendis. Ducimus accusantium laboriosam odio veniam enim, error officiis totam nesciunt facere ipsum minus ex distinctio, id quasi consequuntur eum corporis itaque dolorem ad eveniet? Ducimus ipsam quia non culpa fuga. Praesentium, ea! Vel voluptate, placeat voluptatibus nobis odit maiores eum non harum, recusandae aut libero? Consectetur, consequuntur corporis? Sit architecto fuga aperiam voluptates quaerat reiciendis voluptatem doloribus vitae officiis, labore expedita cumque eos vero, numquam eius, error nostrum veniam impedit repellendus voluptatibus nam!</p>
-                <h5>3 more posts from same author</h5>
+                <h4>{this.state.singlePost.title}</h4>
+                <h4><Link to={`/authors/${this.state.idOfAuthor}`}>{this.state.authorName}</Link></h4>
+                <p className="post-content">{this.state.singlePost.body}</p>
+                <h5>{this.state.sameAuthorPosts.length} more posts from same author</h5>
                 <ul className="author-posts">
-                    <li><Link to='/posts/:name'>Title 10</Link></li>
-                    <li><Link to='/posts/:name'>Title 11</Link></li>
-                    <li><Link to='/posts/:name'>Title 12</Link></li>
+                    {this.state.sameAuthorPosts.map((el) => <li><Link to={`/posts/${el.id}`}>{el.title}</Link></li>)}
                 </ul>
             </div>
         )
