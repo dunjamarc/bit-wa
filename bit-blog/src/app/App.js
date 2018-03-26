@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from './home_page/Home.js';
 import About from './About.js';
 import AllAuthors from './all_authors_page/AllAuthors.js';

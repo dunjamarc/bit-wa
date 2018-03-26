@@ -12,23 +12,28 @@ class Post extends React.Component {
             allAuthors: [],
             singlePost: {},
             authorName: '',
-            sameAuthorPosts: []
+            sameAuthorPosts: [],
+            postId: 0
         }
     }
 
     componentDidMount() {
-        let thisPostId = this.props.match.params.postId;
+        this.setState({postId: this.props.match.params.postId});
 
+        this.fetchData();
+    }
+
+    fetchData = () => {
         Promise.all([postList.fetchPosts(), authorList.fetchAuthors()])
             .then((promisesData) => {
                 let posts = promisesData[0];
                 let authors = promisesData[1];
 
                 this.setState({
-                    allPosts: posts
+                    allPosts: posts,
                 })
                 this.setState({
-                    singlePost: this.state.allPosts[thisPostId - 1]
+                    singlePost: this.state.allPosts[this.state.postId - 1]
                 })
                 this.setState({
                     allAuthors: authors,
@@ -54,9 +59,16 @@ class Post extends React.Component {
             })
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            postId: nextProps.match.params.postId
+        })
+
+        this.fetchData();
+    }
+
     render() {
         return (
-
             <div className="container">
                 <h4>{this.state.singlePost.title}</h4>
                 <h4><Link to={`/authors/${this.state.idOfAuthor}`}>{this.state.authorName}</Link></h4>
@@ -64,9 +76,8 @@ class Post extends React.Component {
                 <h5>{this.state.sameAuthorPosts.length - 1} more posts from same author</h5>
                 <ul className="author-posts">
                     {this.state.sameAuthorPosts.filter((e) => {
-                        if(e.id !== this.state.singlePost.id){
-                            return e;
-                        }}).map((el) => <li><Link to={`/posts/${el.id}`}>{el.title}</Link></li>)}
+                            return e.id !== this.state.singlePost.postId;
+                        }).map((el) => <li><Link to={`/posts/${el.id}`}>{el.title}</Link></li>)}
                 </ul>
             </div>
         )

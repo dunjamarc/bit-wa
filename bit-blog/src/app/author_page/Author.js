@@ -8,7 +8,7 @@ import authorList from '../../services/authorService.js'
 class Author extends React.Component {
 
     constructor(props){
-        super(props),
+        super(props);
         this.state = {
             allAuthors: [],
             singleAuthor: {}
