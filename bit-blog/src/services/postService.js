@@ -3,7 +3,7 @@ import Post from '../entities/posts.js';
 class PostService {
 
     fetchPosts() {
-        return fetch('https://jsonplaceholder.typicode.com/posts')
+        return fetch('http://localhost:3000/posts')
             .then(response => {
                 return response.json();
             })

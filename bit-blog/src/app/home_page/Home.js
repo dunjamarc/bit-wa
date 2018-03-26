@@ -13,12 +13,20 @@ class Home extends React.Component {
     }
 
     componentDidMount(){
+        this.fetchData();
+    }
+
+    fetchData = () => {
         postList.fetchPosts()
             .then((postsData) => {
                 this.setState({
                     allPosts: postsData
                 })
             })
+    }
+
+    componentDidUpdate(nextState){  // ???????????????
+        this.fetchData();
     }
 
     render() {

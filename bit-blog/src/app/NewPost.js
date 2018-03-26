@@ -30,7 +30,10 @@ class NewPost extends React.Component {
 			title: this.state.inputValue,
 			body: this.state.textareaValue
 		}
-		createPost.fetchCreatePost(obj);
+		createPost.fetchCreatePost(obj)
+		// .then(data => {
+		// 	window.location.pathname = '/';
+		// });
 	
 	}
 
