@@ -25,10 +25,6 @@ class Home extends React.Component {
             })
     }
 
-    componentDidUpdate(nextState){  // ???????????????
-        this.fetchData();
-    }
-
     render() {
         return (
             <div className="container">

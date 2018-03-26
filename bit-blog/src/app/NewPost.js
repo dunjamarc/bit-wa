@@ -31,9 +31,9 @@ class NewPost extends React.Component {
 			body: this.state.textareaValue
 		}
 		createPost.fetchCreatePost(obj)
-		// .then(data => {
-		// 	window.location.pathname = '/';
-		// });
+		.then(data => {
+			window.location.hash = '#/home';
+		});
 	
 	}
 
@@ -56,8 +56,8 @@ class NewPost extends React.Component {
 							<textarea onChange={this.handleChange} id="textarea1" rows="10" className="materialize-textarea" data-length="120" value={this.state.textareaValue}></textarea>
 						</div>
 					</div>
-					<Link to='/' className="waves-effect waves-light btn">Cancel</Link>
-					<Link onClick={this.handleClick} to='/' className="waves-effect waves-light btn">Save</Link>
+					<Link to='/home' className="waves-effect waves-light btn">Cancel</Link>
+					<a onClick={this.handleClick} className="waves-effect waves-light btn">Save</a>
 				</form>
 			</div>
 		)

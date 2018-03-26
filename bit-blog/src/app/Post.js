@@ -77,7 +77,7 @@ class Post extends React.Component {
                 <ul className="author-posts">
                     {this.state.sameAuthorPosts.filter((e) => {
                             return e.id !== this.state.singlePost.postId;
-                        }).map((el) => <li><Link to={`/posts/${el.id}`}>{el.title}</Link></li>)}
+                        }).map((el, i) => <li key={i}><Link to={`/posts/${el.id}`}>{el.title}</Link></li>)}
                 </ul>
             </div>
         )
