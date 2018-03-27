@@ -14,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <div id="wrapper">
         <Header />
         <Switch>
           <Route exact path='/home' component={Home} />
@@ -23,6 +24,8 @@ class App extends Component {
           <Route path='/authors/:id' component={Author} />
           <Route path='/posts/:postId' component={Post} />
         </Switch>
+        <div id="push"></div>
+        </div>
         <Footer />
       </React.Fragment>
     );
