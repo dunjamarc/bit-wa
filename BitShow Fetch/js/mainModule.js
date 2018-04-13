@@ -21,10 +21,6 @@ const initSingleShow = () => {
         })
 
 
-    // singleShowRequest.done(response => {
-    //     displaySingleShow(response);
-    // })
-
     const allSeasons = `http://api.tvmaze.com/shows/${singleShowId}/seasons`;
 
     fetch(allSeasons)
@@ -37,13 +33,7 @@ const initSingleShow = () => {
             })
         })
 
-    // allSeasons.done(response => {
 
-    //     response.forEach(response => {
-    //         displaySeasons(response);
-    //     })
-
-    // })
 
     const cast = `http://api.tvmaze.com/shows/${singleShowId}/cast`;
 
@@ -58,13 +48,7 @@ const initSingleShow = () => {
             })
         })
 
-    // cast.done(response => {
 
-    //     response.forEach(response => {
-    //         const { person } = response;
-    //         displayCast(person);
-    //     })
-    // })
 }
 
 const inputDropdown = () => {
@@ -84,6 +68,8 @@ const allShows = () => {
         .then(function (response) {
             return response.json();
         })
+        
+        
         .then(function (all) {
             const shows = all.slice(0, 50);
             shows.forEach(show => {
@@ -93,16 +79,6 @@ const allShows = () => {
             $('.showDiv').on('click', switchToSingleShow);
         })
 
-    // allShowsRequest.done(response => {
-    //     const shows = response.slice(0, 50);
-
-    //     shows.forEach(show => {
-    //         const singleShow = createTVShows(show.id, show.name, show.image.original);
-    //         displayShows(singleShow);
-    //     })
-
-    //     $('.showDiv').on('click', switchToSingleShow);
-    // })
 }
 
 const searched = () => {
@@ -124,14 +100,6 @@ const searched = () => {
             $('.searchList').on('click', switchToSingleShow);
         })
 
-    // request.done(response => {
-    //     $('#myDropdown').text("");
-
-    //     const myShows = searchedShows(response)
-    //     showSearch(myShows)
-
-    //     $('.searchList').on('click', switchToSingleShow);
-    // });
 }
 
 function switchToSingleShow(event) {
