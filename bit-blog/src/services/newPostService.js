@@ -2,7 +2,7 @@
 class CreatePost {
 
     fetchCreatePost(newPost) {
-        return fetch( 'http://localhost:3000/posts', {
+        return fetch( 'https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
             body: JSON.stringify(newPost),
             headers: {
