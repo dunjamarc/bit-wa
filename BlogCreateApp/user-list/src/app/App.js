@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import '../css/App.css';
-import { Switch, Route, Redirect } from "react-router-dom";
-import Home from './partials/Home.js';
-import About from './partials/About.js';
+import './App.css';
+import { Switch, Route} from "react-router-dom";
+import Home from './Home.js';
+import About from './About.js';
 
 class App extends Component {
   

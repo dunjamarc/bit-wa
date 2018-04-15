@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import LoadingScreen from './LoadingScreen.js';
+import LoadingScreen from './partials/LoadingScreen.js';
 import SearchBar from './SearchBar.js';
-import Card from '../users/UserCard.js';
-import List from '../users/UserList.js';
-import '../../css/App.css';
-import userList from '../../services/UserService.js';
-import { Switch, Route, Redirect } from "react-router-dom";
-import Header from './Header.js';
+import Card from './users/UserCard.js';
+import List from './users/UserList.js';
+import './App.css';
+import userList from '../services/UserService.js';
+import Header from './partials/Header.js';
 import Message from './Message.js';
-import Footer from './Footer.js';
+import Footer from './partials/Footer.js';
 
 class Home extends Component {
 	constructor(props) {
@@ -43,14 +42,14 @@ class Home extends Component {
 
 	countTime = () => {
 		setInterval(() => {
-			let time = Math.floor((new Date() - this.state.refreshTime) / 60000);			
-			this.setState(()=>{
-				if(time === 1){
-					return {passedTime: `${time} minute ago`};
-				} else if(time >= 2){
-					return {passedTime: `${time} minutes ago`};
-				} else if(time > 60){
-					return {passedTime: `Over an hour ago`};
+			let time = Math.floor((new Date() - this.state.refreshTime) / 60000);
+			this.setState(() => {
+				if (time === 1) {
+					return { passedTime: `${time} minute ago` };
+				} else if (time >= 2) {
+					return { passedTime: `${time} minutes ago` };
+				} else if (time > 60) {
+					return { passedTime: `Over an hour ago` };
 				}
 			})
 		}, 30000)
@@ -74,7 +73,7 @@ class Home extends Component {
 			this.setUserDataState();
 			this.filterGender(this.state.users);
 		}
-		
+
 	}
 
 	// shouldComponentUpdate(nextProps, nextState) {
@@ -105,7 +104,7 @@ class Home extends Component {
 		this.setState({
 			search: filtered,
 			inputValue: event.target.value
-			
+
 		});
 		this.filterGender(filtered);
 	}
@@ -113,10 +112,10 @@ class Home extends Component {
 	filterGender = (arr) => {
 		this.setState({
 			male: arr.filter(el => {
-				return el.gender == 'male';
+				return el.gender === 'male';
 			}),
 			female: arr.filter(el => {
-				return el.gender == 'female';
+				return el.gender === 'female';
 			})
 		})
 	}
@@ -124,20 +123,23 @@ class Home extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Header handleClick={this.handleClick} handleRefresh={this.handleRefresh} showCard={this.state.showCard} />
-				{this.state.load ? <LoadingScreen /> :
-					<main>
-						<SearchBar handleChange={this.handleChange} inputValue={this.state.inputValue} />
-						<div className="container">male:{this.state.male.length} female:{this.state.female.length}</div>
-						<div className="row">
-							<div className="col s12 m12">
-								{(this.state.search.length === 0) ? <Message /> :
-									this.state.search.map((el, i) => {
-										return (this.state.showCard ? <Card value={el} key={i} /> : <List value={el} key={i} />)
-									})}
+				<div id="wrapper">
+					<Header handleClick={this.handleClick} handleRefresh={this.handleRefresh} showCard={this.state.showCard} />
+					{this.state.load ? <LoadingScreen /> :
+						<main>
+							<SearchBar handleChange={this.handleChange} inputValue={this.state.inputValue} />
+							<div className="container">male:{this.state.male.length} female:{this.state.female.length}</div>
+							<div className="row">
+								<div className="col s12 m12">
+									{(this.state.search.length === 0) ? <Message /> :
+										this.state.search.map((el, i) => {
+											return (this.state.showCard ? <Card value={el} key={i} /> : <List value={el} key={i} />)
+										})}
+								</div>
 							</div>
-						</div>
-					</main>}
+						</main>}
+					<div id="push"></div>
+				</div>
 				<Footer countTime={this.state.passedTime} />
 			</React.Fragment>
 		)
